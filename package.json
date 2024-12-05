@@ -4,7 +4,7 @@
   "description": "lista de contatos simples em nodejs",
   "main": "src/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --env-file=.env --import=tsx --watch ./src/server.ts"
   },
   "repository": {
     "type": "git",
