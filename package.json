@@ -11,5 +11,9 @@
     "url": "API-Lista-de-Contatos-NodeJS"
   },
   "author": "Davi Lisboa",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1",
+    "helmet": "^8.0.0"
+  }
 }

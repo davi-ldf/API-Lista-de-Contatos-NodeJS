@@ -12,6 +12,10 @@ Planejamento de rotas:
 
 Passo a passo:
 
+1.
 npm init
 
 - entry-point: src/server.ts
+
+2.
+npm i express helmet
