@@ -25,3 +25,6 @@ npm i -D @types/express @types/node tsx typescript
 
 4.
 npx tsc --init
+
+5.
+npm run dev (Após configurar script no package.json)
