@@ -14,3 +14,4 @@ Passo a passo:
 
 npm init
 
+- entry-point: src/server.ts
