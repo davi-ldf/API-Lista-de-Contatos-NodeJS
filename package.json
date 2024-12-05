@@ -1,0 +1,15 @@
+{
+  "name": "api-lista-de-contatos-nodejs",
+  "version": "1.0.0",
+  "description": "lista de contatos simples em nodejs",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "API-Lista-de-Contatos-NodeJS"
+  },
+  "author": "Davi Lisboa",
+  "license": "MIT"
+}
