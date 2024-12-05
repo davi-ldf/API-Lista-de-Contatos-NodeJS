@@ -19,3 +19,6 @@ npm init
 
 2.
 npm i express helmet
+
+3.
+npm i -D @types/express @types/node tsx typescript
