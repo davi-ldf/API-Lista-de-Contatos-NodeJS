@@ -5,6 +5,7 @@ const dataSource = './data/list.txt';
 
 const router = express.Router();
 
+//INSERIR CONTATOS
 router.post('/contato', async (req, res) => {
     const { name } = req.body;
 
@@ -31,6 +32,17 @@ router.post('/contato', async (req, res) => {
     res.status(201).json({ contato: name });
     // status 201 == positivo/sucesso
     // devolve o nome do contato adicionado
+});
+
+//LER CONTATOS
+router.get('/contatos', async(req, res) => {
+    let list: string[] = [];
+    try { //Se existir um arquivo, leia-o
+        const data = await readFile(dataSource, { encoding: 'utf8' });
+        list = data.split('\n');
+    } catch (err) {}
+
+    res.json({ contatos: list });
 });
 
 export default router;
