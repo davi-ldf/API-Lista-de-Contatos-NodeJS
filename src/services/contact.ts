@@ -25,3 +25,13 @@ export const createContact = async (name: string) => {
     //Escreve ele na lista
     //Com o join, o array vira texto antes de ser usado de conteúdo pelo 'writeFile'
 }
+
+export const deleteContact = async (name:string) => {
+    let list = await getContacts();
+
+
+    list = list.filter(item => item.toLowerCase() !== name.toLowerCase());
+    //Retorna true se o nome não bater (mantém)
+
+    await writeFile(dataSource, list.join('\n'));
+}
