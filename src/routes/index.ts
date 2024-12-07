@@ -1,6 +1,6 @@
 import express from 'express';
 import { readFile, writeFile } from 'fs/promises';
-import { createContact, getContacts } from '../services/contact';
+import { createContact, deleteContact, getContacts } from '../services/contact';
 
 const dataSource = './data/list.txt';
 
@@ -33,22 +33,19 @@ router.get('/contatos', async (req, res) => {
 });
 
 //DELETAR CONTATOS
-// router.delete('/contato', async (req, res) => {
-//     const { name } = req.query;
+router.delete('/contato', async (req, res) => {
+    const { name } = req.query;
 
-//     if(!name) {
-//         return res.json({error: 'Precisa mandar um nome para excluir.' });
-//     }
+    if(!name) {
+        return res.json({error: 'Precisa mandar um nome para excluir.' });
+    }
 
-//     let list = await getContacts();
+    let list = await getContacts();
 
 
-//     list = list.filter(item => item.toLowerCase() !== (name as string).toLowerCase());
-//     //Retorna true se o nome não bater (mantém)
+    await deleteContact(name as string);
 
-//     await writeFile(dataSource, list.join('\n'));
-
-//     res.json({ contato: name });
-// });
+    res.json({ contato: name });
+});
 
 export default router;
