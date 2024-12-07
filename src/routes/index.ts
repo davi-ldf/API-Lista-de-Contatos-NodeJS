@@ -1,5 +1,6 @@
 import express from 'express';
 import { readFile, writeFile } from 'fs/promises';
+import { createContact, getContacts } from '../services/contact';
 
 const dataSource = './data/list.txt';
 
@@ -14,20 +15,9 @@ router.post('/contato', async (req, res) => {
         return;
     }
 
-    //Processamento dos dados
-    let list: string[] = [];
-    try { //Se existir um arquivo, leia-o
-        const data = await readFile(dataSource, { encoding: 'utf8' });
-        // lê a lista e joga a string dentro de data
-        list = data.split('\n');
-        // pega a string de data e fatia em um array a cada '\n'
-        // joga tal array para dentro de list
-    } catch (err) {}
+    let list = await getContacts();
 
-    list.push(name); //Adiciona o novo contato no array
-    await writeFile(dataSource, list.join('\n')); 
-    //Escreve ele na lista
-    //Com o join, o array vira texto antes de ser usado de conteúdo pelo 'writeFile'
+    await createContact(name);
 
     res.status(201).json({ contato: name });
     // status 201 == positivo/sucesso
@@ -35,14 +25,30 @@ router.post('/contato', async (req, res) => {
 });
 
 //LER CONTATOS
-router.get('/contatos', async(req, res) => {
-    let list: string[] = [];
-    try { //Se existir um arquivo, leia-o
-        const data = await readFile(dataSource, { encoding: 'utf8' });
-        list = data.split('\n');
-    } catch (err) {}
+router.get('/contatos', async (req, res) => {
+    let list = await getContacts();
+
 
     res.json({ contatos: list });
 });
+
+//DELETAR CONTATOS
+// router.delete('/contato', async (req, res) => {
+//     const { name } = req.query;
+
+//     if(!name) {
+//         return res.json({error: 'Precisa mandar um nome para excluir.' });
+//     }
+
+//     let list = await getContacts();
+
+
+//     list = list.filter(item => item.toLowerCase() !== (name as string).toLowerCase());
+//     //Retorna true se o nome não bater (mantém)
+
+//     await writeFile(dataSource, list.join('\n'));
+
+//     res.json({ contato: name });
+// });
 
 export default router;
