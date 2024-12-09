@@ -33,7 +33,7 @@ router.get('/contatos', async (req, res) => {
 });
 
 //DELETAR CONTATOS
-router.delete('/contato', async (req, res) => {
+router.delete('/contato', async (req:any, res:any) => {
     const { name } = req.query;
 
     if(!name) {
